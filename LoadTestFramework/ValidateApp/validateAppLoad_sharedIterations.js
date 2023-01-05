@@ -2,20 +2,25 @@ import http from 'k6/http';
 
 const url = 'https://api.agencyportal.qa.gobusiness.io/resource/validation';
 
-export let options = {
-  noCookiesReset: true,
-  //summaryTrendStats: ["min", "max", "p(90)", "p(95)", "p(99)"],
-  scenarios: {
-      constantRequests: {
-          executor: 'constant-vus',
-          duration: '120s',
-          rate: 1,
-          timeUnit: '1s',
-          preAllocatedVUs: 120,
-          maxVUs: 120,
-      },
-  },
-};
+
+export const options = {
+  discardResponseBodies: true,
+	  scenarios: {
+	    contacts: {
+	      executor: 'shared-iterations',
+	      vus: 10,
+	      iterations: 1300,
+	      maxDuration: '60s',
+	    },
+	  },
+      ext: {
+        loadimpact: {
+          projectID: 3620807,
+          // Test runs with the same name groups test runs together
+          name: "Validate Application Results - Shared Iteration"
+        }
+      }
+  	};
 
 export default function () {
   let data = {
@@ -4160,13 +4165,13 @@ export default function () {
   };
   for(let i=0;i<1;i++)
     { let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
-        data["application"]["general"]["applicationNumber"]="FC231212"+ appNumber;
-        console.log("Application Number "+data["application"]["general"]["applicationNumber"])
+        data["application"]["general"]["applicationNumber"]="PFT12345"+ appNumber;
+        //console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 
   // Using a JSON string as body
   let res = http.post(url, JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1671420127.RS256.f3769aa5-fd12-4d28-b0e8-9cc24d0ced4d.HLYDD0qDNNIiB4J2NQhxHfA8FfZ7Oerv2tYf8vuyiaTiPOLWcQfXly596e1AYJGGxJgChri5btk_sEwiXuRIacvzZ_DZApD3LKLaL9ahrh1xuqFmDGCwYltTpF4uDkYrPUd6G0jRo0VwTgsHYs-1j4lUTS-MPfiOoi2ydU2jC34icMu74jr5ILp4jps9Ym31Cy3QDRAxvRKyiEmjFhHcqTl7U7bReT4LZBdCfiptkBZSHjym4yoBTWEg3G4K_CAwAJ1-Mcz-E9kjbVhd0fuiZVjYfKcuuZLWqko1PUBuAfJ7trkVXqhtJwLLYtUMPoaaJZE_3VOIUgEEo-EL0r2OZQ'},
+    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1672801788.RS256.861d7ded-4020-436f-8d12-486ba0548bed.g1iLZVhyEc2P8FF6kOxJLiNPjgFOronsLd29q2Q6EbfD6eqwS4cOO3tz4tcSEzujBY1C_U1X8mSkUbnN6J102IVbAL21mVwlZZ09VgnzrXczuPlWVDd5ktQxke0SBo-JAMvbYPU9jJTFw0dlhGjO2ht7MGbb1gP51w4ie6ei4EufifDpguhBJemmRIPo9lUq3cVsnS69DcFRjnycIA_CUKuKgV53-eY3dhigh--0oXj1Y3UICPTpJqjGtDlHr44BiGYg_zS7SzMxwKNyIywo4kQjvad23ASPRnAqkfJ5jCcBc1JssnQxy7n09wnZRh6tSmns3d6hRV8vuFheppgBvA'},
   });
 }
 

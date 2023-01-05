@@ -1,12 +1,21 @@
 import http from 'k6/http';
 
-const url = 'https://api.agencyportal.qa.gobusiness.io/resource/validation';
+const url = 'https://api.agencyportal.qa.gobusiness.io/resource/application';
 
+export let options = {
+  ext:  {
+    loadimpact: {
+      projectID: 3620807,
+      // Test runs with the same name groups test runs together
+      name: "Create Application Results - Baseline Test"
+    }
+  }
+}
 
 export default function () {
   let data =
     {
-        "operation": "validation",
+        "operation": "createApplication",
         "application": {
           "general": {
             "applicationNumber": "FC224149770",
@@ -6137,7 +6146,7 @@ for(let i=0;i<1;i++)
 
   // Using a JSON string as body
   let res = http.post(url, JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1671420244.RS256.e245e23b-385b-4ac3-bda2-9dcd62183f12.U9gyvYPV87C0S35Wilnvcs3lXzmXR3GcGjhliqz3r2ttggKdkB5BOy10oz7ZEiRPKQQbnDMY4vl0Z8tKt5IiMgxriCCCsU4yBHzVAI4gQs-s2Nt8wWDzDKr5kWYetWF1sF3x1mWri6tRaaRLCqb_MS5J-SEbfUWzMfoGjKudzGIcRwlpPPHiWhJC7vZUld7zy1-d_J7nEdzUUgt3dTlBxHcNVS_g3l-AhW_WTiTO3uEPSM-_PEaFppqzPrBKqY9p0aUKGX2VEMWXSO_vDvE2SmLP11cEnR2dHRlm6C69sUlyR4Np4yvfsQV7lBDagRr1Kyj9g2g7FlfpEFETMNua2g'},
+    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1672799511.RS256.c34fc27c-c616-4340-939d-545983ca9eec.CAMWOKha-SaduyZEHLAHZseHZCAaonCLuk58_y9I4uwCGUkR3poCyhh3Nyvtk2MWkWROwSgjl3IyYQDyOtyp65xvkBzp1stHBCyyENjrHXSsFQTvT7Tptmddf29VKovxsZAA-ivVw0yOul1_88_0U4WPgg7_gVG4mezEWq7o5aUL4Wdoq2eBAoyHA3XuY0uLlA3_9gNBDjfJT5o40wH2qSYCVs5E_GsiF-cWUA1nFHEhtdLf66js_-EmeoZ-QkrTj2OuK5g56baoL3vDEzNhLTpjOhErw1nVSYPww7fYFhVPQWD_AGF7DThwZ_Ky_vx1KWRjkhNaxOcMocDZs3bgSQ'},
   });
 }
 }

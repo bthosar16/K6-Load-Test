@@ -3,6 +3,24 @@ import http from 'k6/http';
 const url = 'https://api.agencyportal.qa.gobusiness.io/resource/validation';
 
 
+export const options = {
+  discardResponseBodies: true,
+	  scenarios: {
+	    contacts: {
+	      executor: 'constant-vus',
+	      vus: 15,
+	      duration: '60s',
+	    },
+	  },
+      ext: {
+        loadimpact: {
+          projectID: 3620807,
+          // Test runs with the same name groups test runs together
+          name: "Validate Application Results - Constant VU"
+        }
+      }
+  	};
+
 export default function () {
   let data =
     {
@@ -6129,15 +6147,16 @@ export default function () {
           "status": "LIVE"
         }
       }
-for(let i=0;i<1;i++)
+  for(let i=0;i<1;i++)
     { let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
         data["application"]["general"]["applicationNumber"]="PFT12345"+ appNumber;
-        console.log("Application Number "+data["application"]["general"]["applicationNumber"])
+        //console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 
   // Using a JSON string as body
   let res = http.post(url, JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1671420244.RS256.e245e23b-385b-4ac3-bda2-9dcd62183f12.U9gyvYPV87C0S35Wilnvcs3lXzmXR3GcGjhliqz3r2ttggKdkB5BOy10oz7ZEiRPKQQbnDMY4vl0Z8tKt5IiMgxriCCCsU4yBHzVAI4gQs-s2Nt8wWDzDKr5kWYetWF1sF3x1mWri6tRaaRLCqb_MS5J-SEbfUWzMfoGjKudzGIcRwlpPPHiWhJC7vZUld7zy1-d_J7nEdzUUgt3dTlBxHcNVS_g3l-AhW_WTiTO3uEPSM-_PEaFppqzPrBKqY9p0aUKGX2VEMWXSO_vDvE2SmLP11cEnR2dHRlm6C69sUlyR4Np4yvfsQV7lBDagRr1Kyj9g2g7FlfpEFETMNua2g'},
+    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1672224070.RS256.3d1b0c8e-4803-46c8-97c8-189248f32c29.HYYx8ujknievVYATYiwR4ViY4u8K9vp3XeUb-LmXg_OaxIm2-WazGng5gDn6pJy7mxJJV6JTdjxX_pRQwIwsaxweDf0xjuC6uKzNaJsGieJMExMNyCQ2HdpB9noU3OlTGCdslvClais-wUk0_2iQ4tnuNcKkC06_UZg8uoaE5L4b0L_SVy6FAG51QstHXpCaOUC4345nj_UOPFirPb62COjlSUKWvF7ce5lzdN0i7qbrPzcxFsyDEmsiP3WezBX7mTHsLU-0JdLT_bDmt1nQ4IsXPIJxK6wu6odcYMg_EPqFvisGDKhYnzWF0kj_nXPNrZHVNhb8ZHm5ttIF9fGp2Q'},
   });
 }
+
 }

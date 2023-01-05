@@ -3,6 +3,28 @@ import http from 'k6/http';
 const url = 'https://api.agencyportal.qa.gobusiness.io/resource/validation';
 
 
+export const options = {
+  discardResponseBodies: true,
+	  scenarios: {
+	    contacts: {
+	      executor: 'ramping-vus',
+	      startVUs: 0,
+	      stages: [
+	        { duration: '60s', target: 10 },
+	        { duration: '20s', target: 0 },
+	      ],
+	      gracefulRampDown: '0s',
+	    },
+	  },
+      ext: {
+        loadimpact: {
+          projectID: 3620807,
+          // Test runs with the same name groups test runs together
+          name: "Validate Application Results - Ramping VU"
+        }
+      }
+  	};
+
 export default function () {
   let data =
     {
@@ -6129,15 +6151,16 @@ export default function () {
           "status": "LIVE"
         }
       }
-for(let i=0;i<1;i++)
+  for(let i=0;i<1;i++)
     { let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
         data["application"]["general"]["applicationNumber"]="PFT12345"+ appNumber;
-        console.log("Application Number "+data["application"]["general"]["applicationNumber"])
+        //console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 
   // Using a JSON string as body
   let res = http.post(url, JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1671420244.RS256.e245e23b-385b-4ac3-bda2-9dcd62183f12.U9gyvYPV87C0S35Wilnvcs3lXzmXR3GcGjhliqz3r2ttggKdkB5BOy10oz7ZEiRPKQQbnDMY4vl0Z8tKt5IiMgxriCCCsU4yBHzVAI4gQs-s2Nt8wWDzDKr5kWYetWF1sF3x1mWri6tRaaRLCqb_MS5J-SEbfUWzMfoGjKudzGIcRwlpPPHiWhJC7vZUld7zy1-d_J7nEdzUUgt3dTlBxHcNVS_g3l-AhW_WTiTO3uEPSM-_PEaFppqzPrBKqY9p0aUKGX2VEMWXSO_vDvE2SmLP11cEnR2dHRlm6C69sUlyR4Np4yvfsQV7lBDagRr1Kyj9g2g7FlfpEFETMNua2g'},
+    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1672224610.RS256.64a5bede-83a7-40ef-8104-97b531e25fbe.IVq0QSTA5iQD_fKFNW6tmVz1Jpam0in9iYxcUDD-WTwBz7JQLYOqELC0Ct3f2A6WZFEbgHoqk4nC-yRx0aYp1-gR5V0kNoad8R_Pzg4z8BsFS3YfTJSfE7NAddGPhjIhGSJpHVyy_1gJkhyvm2jgppAQuBU6IE_-0Q1J3U9xFRGOHrFqL8_m0Nc7q5ZAxR7DAFXp7SDb7QwO7suyZVYYdeivdkFDKGbatyhg7X_fBXMe-VDYpw-q2ZzRcPXgf7ddFhEC1zNu29PYW2FH3W6tP5YBEHwVeCaywOb8DRzmGP87rZnAsos25PEXFmzjWZhA_GyxfhtMLZ2zDCfD9QcuqQ'},
   });
 }
+
 }

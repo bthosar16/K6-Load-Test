@@ -1,0 +1,38 @@
+{
+    "referenceNumber": "FC224149848",
+    "l1tStatusPushRequest": {
+      "result": {
+        "licence": null,
+        "application": [
+          {
+            "licence": [
+              {
+                "expiryDate": null,
+                "licenceNumber": "LICONBUAPP",
+                "renewalIndicator": "N",
+                "licenceFile": [
+                  {
+                    "fileName": "Lic11.pdf",
+                    "refId": "db0ff426-da31-42d6-a8c3-41bd45c2ad44"
+                  },
+                  {
+                    "fileName": "Buld Cert.pdf",
+                    "refId": "18f83973-d74b-4b81-b9db-165c67545c6c"
+                  }
+                ],
+                "issueDate": "16/12/2022",
+                "startDate": "16/12/2022",
+                "status": "Active"
+              }
+            ],
+            "applicationStatus": "Approved",
+            "applicationNumber": "FC224149848",
+            "clarificationField": null,
+            "message": "Test 1234567",
+            "paymentAmount": null
+          }
+        ],
+        "operation": "statusPoll"
+      }
+    }
+  }

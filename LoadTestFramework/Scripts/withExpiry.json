@@ -1,0 +1,38 @@
+{
+    "referenceNumber": "FC224149850",
+    "l1tStatusPushRequest": {
+      "result": {
+        "licence": null,
+        "application": [
+          {
+            "licence": [
+              {
+                "expiryDate": "15/12/2023",
+                "licenceNumber": "LICBUSERPARAPP",
+                "renewalIndicator": "N",
+                "licenceFile": [
+                  {
+                    "fileName": "Lic11.pdf",
+                    "refId": "f6f0cbbd-8be4-4673-853b-a8dafd8e8398"
+                  },
+                  {
+                    "fileName": "Lic11.pdf",
+                    "refId": "50a023f3-1834-48d9-9b78-923d0eb2f817"
+                  }
+                ],
+                "issueDate": "13/12/2022",
+                "startDate": "16/12/2022",
+                "status": "Active"
+              }
+            ],
+            "applicationStatus": "Partially Approved",
+            "applicationNumber": "FC224149850",
+            "clarificationField": null,
+            "message": "djfbvjkbdf",
+            "paymentAmount": null
+          }
+        ],
+        "operation": "statusPoll"
+      }
+    }
+  }

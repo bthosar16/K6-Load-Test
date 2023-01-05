@@ -1,7 +1,25 @@
 import http from 'k6/http';
 
-const url = 'https://api.agencyportal.qa.gobusiness.io/resource/validation';
+const url = 'https://api.agencyportal.qa.gobusiness.io/resource/application';
 
+export const options = {
+  discardResponseBodies: true,
+	  scenarios: {
+	    contacts: {
+	      executor: 'shared-iterations',
+	      vus: 5,
+	      iterations: 1800,
+	      maxDuration: '60s',
+	    },
+	  },
+      ext: {
+        loadimpact: {
+          projectID: 3620807,
+          // Test runs with the same name groups test runs together
+          name: "Create Application Results - Shared Iterations"
+        }
+      }
+  	};
 
 export default function () {
   let data =
@@ -6129,15 +6147,16 @@ export default function () {
           "status": "LIVE"
         }
       }
-for(let i=0;i<1;i++)
+  for(let i=0;i<1;i++)
     { let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
-        data["application"]["general"]["applicationNumber"]="PFT12345"+ appNumber;
-        console.log("Application Number "+data["application"]["general"]["applicationNumber"])
+        data["application"]["general"]["applicationNumber"]="PFT10101"+ appNumber;
+        //console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 
   // Using a JSON string as body
   let res = http.post(url, JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1671420244.RS256.e245e23b-385b-4ac3-bda2-9dcd62183f12.U9gyvYPV87C0S35Wilnvcs3lXzmXR3GcGjhliqz3r2ttggKdkB5BOy10oz7ZEiRPKQQbnDMY4vl0Z8tKt5IiMgxriCCCsU4yBHzVAI4gQs-s2Nt8wWDzDKr5kWYetWF1sF3x1mWri6tRaaRLCqb_MS5J-SEbfUWzMfoGjKudzGIcRwlpPPHiWhJC7vZUld7zy1-d_J7nEdzUUgt3dTlBxHcNVS_g3l-AhW_WTiTO3uEPSM-_PEaFppqzPrBKqY9p0aUKGX2VEMWXSO_vDvE2SmLP11cEnR2dHRlm6C69sUlyR4Np4yvfsQV7lBDagRr1Kyj9g2g7FlfpEFETMNua2g'},
+    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1672814463.RS256.53f60722-5092-409b-bf8d-8a3201b2396c.g7z2omUrNFRb-etAPgLywwLj_ro967EzGD0TQgpxF9hSVY9AZdXuEOgAI8m77m2mXNXA0ctgx5mse2swXgh6s9VpyHEvOSO9B79IcBcWwonLUO49WpPcG6rOM1kd-IyhMZy3PDUy1SSoUn91zdJLvG2vAFTUrd63rPuGrYzHeRl3cOfsW05deElPARufTknJW3SVF0ejeSPHWG3nvhyRyh_HarZfvGqyXvhLrm3I8-UMXUji1upoqLCYcDNM9rzYToT-6x6EFL_y4Fakv5dQIquiiPdTXLJk8HMcDONpD5HWux3oN6hgNh0YT6ml8I1q8HHJdBqLD6qE5ApJ_3zTxA'},
   });
 }
+
 }

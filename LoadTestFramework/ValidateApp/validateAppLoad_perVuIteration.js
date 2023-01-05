@@ -1,7 +1,26 @@
 import http from 'k6/http';
 
 const url = 'https://api.agencyportal.qa.gobusiness.io/resource/validation';
+//const authHeader = 'G2B_L1T.1671594266.RS256.67c93f15-0dfc-4018-a04d-b5058b837964.oGlD439rt7yjP75n1CI8n1B0d2WkiaQ-m9YVbUsiGtn9hMT2ZCOUUU6H3O42l5CMtPJF4rsRzAYi3OLDG25kHGr6aZYlhpFptU8LyzyUUjzPzHY64OVEeoY4O8FqKGc5Tf5Zr7d-c0eh2tufmOZDrOHteqaiLB1KbCMxBGQ13eWUwqGfQH4L8XXUOvu_GzBlO4f6SJXHOKCGzJnN2POTILcInwU_5EZDUFEqmhDtikFD9_TdsJrwUUJ29yQBa0lIKusuqgJfRSInkWLie-xXGSHJpihy4liVYN8Pi3glAqpC9rpVp4tcTTRCbHYDVedP1oda1CyOJXIYZrsbjgqCTw';
 
+export const options = {
+  discardResponseBodies: true,
+	  scenarios: {
+	    contacts: {
+	      executor: 'per-vu-iterations',
+	      vus: 10,
+	      iterations: 180,
+	      maxDuration: '60s',
+	    },
+	  },
+      ext: {
+        loadimpact: {
+          projectID: 3620807,
+          // Test runs with the same name groups test runs together
+          name: "Validate Application Results - Per Vu Iteration"
+        }
+      }
+  	};
 
 export default function () {
   let data =
@@ -6129,15 +6148,16 @@ export default function () {
           "status": "LIVE"
         }
       }
-for(let i=0;i<1;i++)
+  for(let i=0;i<1;i++)
     { let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
         data["application"]["general"]["applicationNumber"]="PFT12345"+ appNumber;
-        console.log("Application Number "+data["application"]["general"]["applicationNumber"])
+        //console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 
   // Using a JSON string as body
   let res = http.post(url, JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1671420244.RS256.e245e23b-385b-4ac3-bda2-9dcd62183f12.U9gyvYPV87C0S35Wilnvcs3lXzmXR3GcGjhliqz3r2ttggKdkB5BOy10oz7ZEiRPKQQbnDMY4vl0Z8tKt5IiMgxriCCCsU4yBHzVAI4gQs-s2Nt8wWDzDKr5kWYetWF1sF3x1mWri6tRaaRLCqb_MS5J-SEbfUWzMfoGjKudzGIcRwlpPPHiWhJC7vZUld7zy1-d_J7nEdzUUgt3dTlBxHcNVS_g3l-AhW_WTiTO3uEPSM-_PEaFppqzPrBKqY9p0aUKGX2VEMWXSO_vDvE2SmLP11cEnR2dHRlm6C69sUlyR4Np4yvfsQV7lBDagRr1Kyj9g2g7FlfpEFETMNua2g'},
+    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1672223285.RS256.313d2a20-f399-4783-bfcc-27919bfec83e.jBkaxWTMVeM6lMfHrXK7uNbDkOTYqibA6NL5hoEyrjk5iDK4u3EBMU8FmMs5a71OV4-mUJ7UMUW44-_t0f_LdxzT9yU8ko4wBhg_-pzTV55SQuHhA9wNJ4gSNxPugx2ipt_vU522PYOODf0ljBK5LVH9ida_owPH937d9Ld2854bFCfJKheHJVC4M8SyWI2WMfRAEuzge0hwo2Tmvt86K32ULT9VcN0GGDIXm80mvhBrU2Jdv6OFtz7AK01oFPGWayNhOSPonJdYQ8ZYqgIlILVRND5BHcB-OxxXWC9J1KxytWUk6wghLG9BfpetXu9RWhdKbMcEn4yZgF8lpJwQZA'},
   });
 }
+
 }

@@ -2,6 +2,15 @@ import http from 'k6/http';
 
 const url = 'https://api.agencyportal.qa.gobusiness.io/resource/validation';
 
+export let options = {
+  ext: {
+    loadimpact: {
+      projectID: 3620807,
+      // Test runs with the same name groups test runs together
+      name: "Validate Application Results - Baseline Test"
+    }
+  }
+}
 
 export default function () {
   let data =
@@ -6130,14 +6139,14 @@ export default function () {
         }
       }
 for(let i=0;i<1;i++)
-    { let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
+    { let appNumber=Math.floor(Math.random() * (99999 - 10000 + 1 ) + 10000)
         data["application"]["general"]["applicationNumber"]="PFT12345"+ appNumber;
-        console.log("Application Number "+data["application"]["general"]["applicationNumber"])
+        //console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 
   // Using a JSON string as body
   let res = http.post(url, JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1671420244.RS256.e245e23b-385b-4ac3-bda2-9dcd62183f12.U9gyvYPV87C0S35Wilnvcs3lXzmXR3GcGjhliqz3r2ttggKdkB5BOy10oz7ZEiRPKQQbnDMY4vl0Z8tKt5IiMgxriCCCsU4yBHzVAI4gQs-s2Nt8wWDzDKr5kWYetWF1sF3x1mWri6tRaaRLCqb_MS5J-SEbfUWzMfoGjKudzGIcRwlpPPHiWhJC7vZUld7zy1-d_J7nEdzUUgt3dTlBxHcNVS_g3l-AhW_WTiTO3uEPSM-_PEaFppqzPrBKqY9p0aUKGX2VEMWXSO_vDvE2SmLP11cEnR2dHRlm6C69sUlyR4Np4yvfsQV7lBDagRr1Kyj9g2g7FlfpEFETMNua2g'},
+    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1672217685.RS256.2c46cff6-3f4c-494d-8da6-f9ff988c08f8.DUyCKrtgcObVgoVck1hQ5n2FvLAUsZUSGGdZmnci564J3qQX00xE_CJR8mCm00gWbUg-tfN864hMKvesQ3c5QoP3lW8ykSDTm6tjFkaMKz_pAaOqQENnQ_px8QX3f1JaYhCIGJsEEVcaB6ggGjYMwgjBYOWbn6fmdMBM7T7Y1wbm4wTS22mfD1xsGlhtwGAacppeYRV8uTRP3LhP7sWtPbpRbryT8CjpGbdii2hUSZ5rGtSdblxvqhw4avoe--8gE3WqsbCPrq03VAYHOuIoYtYnJz3U6vw-PQ_-LIKxIYN0IDjC-j3tfZJl-V46r9zszLFhz9a4c64hiwyE5xZGmA'},
   });
 }
 }
