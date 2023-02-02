@@ -14,7 +14,7 @@ export const options = {
 	  },
       ext: {
         loadimpact: {
-          projectID: 3620807,
+          projectID: 3624684,
           // Test runs with the same name groups test runs together
           name: "Validate Application Results - Constant VU"
         }
@@ -6148,14 +6148,14 @@ export default function () {
         }
       }
   for(let i=0;i<1;i++)
-    { let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
-        data["application"]["general"]["applicationNumber"]="PFT12345"+ appNumber;
+    { let appNumber=Math.floor(Math.random() * (99999 - 10000 + 1 ) + 10000)
+        data["application"]["general"]["applicationNumber"]="PFT0B2345"+ appNumber;
         //console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 
   // Using a JSON string as body
   let res = http.post(url, JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1672224070.RS256.3d1b0c8e-4803-46c8-97c8-189248f32c29.HYYx8ujknievVYATYiwR4ViY4u8K9vp3XeUb-LmXg_OaxIm2-WazGng5gDn6pJy7mxJJV6JTdjxX_pRQwIwsaxweDf0xjuC6uKzNaJsGieJMExMNyCQ2HdpB9noU3OlTGCdslvClais-wUk0_2iQ4tnuNcKkC06_UZg8uoaE5L4b0L_SVy6FAG51QstHXpCaOUC4345nj_UOPFirPb62COjlSUKWvF7ce5lzdN0i7qbrPzcxFsyDEmsiP3WezBX7mTHsLU-0JdLT_bDmt1nQ4IsXPIJxK6wu6odcYMg_EPqFvisGDKhYnzWF0kj_nXPNrZHVNhb8ZHm5ttIF9fGp2Q'},
+    headers: { 'Content-Type': 'application/json', 'authorization': ''},
   });
 }
 

@@ -10,8 +10,8 @@ export const options = {
 	      executor: 'ramping-vus',
 	      startVUs: 0,
 	      stages: [
-	        { duration: '60s', target: 10 },
-	        { duration: '20s', target: 0 },
+	        { duration: '25s', target: 10 },
+	        { duration: '10s', target: 0 },
 	      ],
 	      gracefulRampDown: '0s',
 	    },
@@ -6159,7 +6159,7 @@ export default function () {
 
   // Using a JSON string as body
   let res = http.post(url, JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1672224610.RS256.64a5bede-83a7-40ef-8104-97b531e25fbe.IVq0QSTA5iQD_fKFNW6tmVz1Jpam0in9iYxcUDD-WTwBz7JQLYOqELC0Ct3f2A6WZFEbgHoqk4nC-yRx0aYp1-gR5V0kNoad8R_Pzg4z8BsFS3YfTJSfE7NAddGPhjIhGSJpHVyy_1gJkhyvm2jgppAQuBU6IE_-0Q1J3U9xFRGOHrFqL8_m0Nc7q5ZAxR7DAFXp7SDb7QwO7suyZVYYdeivdkFDKGbatyhg7X_fBXMe-VDYpw-q2ZzRcPXgf7ddFhEC1zNu29PYW2FH3W6tP5YBEHwVeCaywOb8DRzmGP87rZnAsos25PEXFmzjWZhA_GyxfhtMLZ2zDCfD9QcuqQ'},
+    headers: { 'Content-Type': 'application/json', 'authorization': ''},
   });
 }
 

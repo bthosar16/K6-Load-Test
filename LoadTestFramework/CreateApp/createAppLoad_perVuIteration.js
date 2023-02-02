@@ -15,7 +15,7 @@ export const options = {
 	  },
       ext: {
         loadimpact: {
-          projectID: 3620807,
+          projectID: 3624684,
           // Test runs with the same name groups test runs together
           name: "Create Application Results - Per Vu Iteration"
         }
@@ -6151,7 +6151,7 @@ export default function () {
   for(let i=0;i<1;i++)
     { //let appNumber=parseInt(Date.now() * Math.random())
       let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
-        data["application"]["general"]["applicationNumber"]="PFT14783"+ appNumber;
+        data["application"]["general"]["applicationNumber"]="PFT12352"+ appNumber;
         //console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 

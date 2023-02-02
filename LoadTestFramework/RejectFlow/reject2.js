@@ -2,20 +2,19 @@ import http from "k6/http";
 
 const dashboardUrl = 'https://api.agencyportal.qa.gobusiness.io/api/dashboard/applications?tab=openCases&page=0&sortField=updatedAt&sortOrder=asc&limit=20';
 const unassignedCasesUrl = 'https://api.agencyportal.qa.gobusiness.io/api/dashboard/applications?tab=unassignedCases&page=0&sortField=updatedAt&sortOrder=asc&limit=20';
-const token = 'Bearer ';
+const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJBZ2VuY3kgUG9ydGFsIiwic3ViIjoiT2ZmaWNlckB0ZWNoLmdvdi5zZyIsImV4cCI6MTY3MzU3OTk1OSwicm9sZSI6ImFnZW5jeV9vZmZpY2VyIiwidXNlciI6eyJpZCI6MTEsImFnZW5jeUNvZGUiOiJtb2UiLCJhZ2VuY3lOYW1lIjoiTWluaXN0cnkgb2YgRWR1Y2F0aW9uIn0sImF1dGhvcml0aWVzIjpbInByb2Nlc3NfYXBwbGljYXRpb24iLCJyZWFzc2lnbl9zZWxmIl0sImp0aSI6IjlmY2VjMDVmLTZkMTAtNGFlNS1hMjQ3LTE1MGJmOWE1YTkxNSJ9.UuKE7NW6s6R9N484eyFIRKvIxYx1NUEGD7htKi1DveitTnADiRJE4a-s8Q78U5huYYvTEaUaw0_hp0LI0MepGQ';
 
 
 export const options = {
     ext: {
         loadimpact: {
             projectID: 3620807,
-            // Test runs with the same name groups test runs together
-            name: "Validate Application Results - Shared Iteration"
+            name: "Reject the Application"
         }
     }
 };
 
-export default function SAS(applicationNumber) {
+export default function () {
 
     let rejectData =
     {
@@ -23,14 +22,12 @@ export default function SAS(applicationNumber) {
         "messageToApplicant": ""
     }
     const appNumber = [
-        "PFT012303400",
-        "PFT012305820"
+        "PFT123216109"
     ]
 
     let appIndex = 0;
     let arrLength = appNumber.length;
     while (appIndex < arrLength) {
-        const startTime = Date.now();
         const urlClaim = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber[appIndex] + '/claim';
         const urlViewApp = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber[appIndex];
         const urlReject = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber[appIndex] + '/reject';
@@ -63,10 +60,8 @@ export default function SAS(applicationNumber) {
         let resReject = http.post(urlReject, JSON.stringify(rejectData), {
             headers: { 'Content-Type': 'application/json', 'Authorization': token },
         });
-        console.log(startTime - Date.now())
+
         appIndex = appIndex + 1;
         // appNumber.shift();
     }
-   
 }
-

@@ -5,7 +5,7 @@ const url = 'https://api.agencyportal.qa.gobusiness.io/resource/application';
 export let options = {
   ext:  {
     loadimpact: {
-      projectID: 3620807,
+      projectID: 3624684,
       // Test runs with the same name groups test runs together
       name: "Create Application Results - Baseline Test"
     }
@@ -6140,13 +6140,13 @@ export default function () {
       }
 for(let i=0;i<1;i++)
     { let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
-        data["application"]["general"]["applicationNumber"]="PFT12345"+ appNumber;
+        data["application"]["general"]["applicationNumber"]="PFT54921"+ appNumber;
         console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 
   // Using a JSON string as body
   let res = http.post(url, JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', 'authorization': 'G2B_L1T.1672799511.RS256.c34fc27c-c616-4340-939d-545983ca9eec.CAMWOKha-SaduyZEHLAHZseHZCAaonCLuk58_y9I4uwCGUkR3poCyhh3Nyvtk2MWkWROwSgjl3IyYQDyOtyp65xvkBzp1stHBCyyENjrHXSsFQTvT7Tptmddf29VKovxsZAA-ivVw0yOul1_88_0U4WPgg7_gVG4mezEWq7o5aUL4Wdoq2eBAoyHA3XuY0uLlA3_9gNBDjfJT5o40wH2qSYCVs5E_GsiF-cWUA1nFHEhtdLf66js_-EmeoZ-QkrTj2OuK5g56baoL3vDEzNhLTpjOhErw1nVSYPww7fYFhVPQWD_AGF7DThwZ_Ky_vx1KWRjkhNaxOcMocDZs3bgSQ'},
+    headers: { 'Content-Type': 'application/json', 'authorization': ''},
   });
 }
 }

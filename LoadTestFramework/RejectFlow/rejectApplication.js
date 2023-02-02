@@ -1,27 +1,34 @@
 import http from 'k6/http';
 
 const urlUnassigned = 'https://api.agencyportal.qa.gobusiness.io/api/dashboard/applications?tab=unassignedCases&page=0&sortField=updatedAt&sortOrder=asc&limit=20';
-const urlClaim = 'https://api.agencyportal.qa.gobusiness.io/api/application/PFT012211374/claim';
-const urlViewApp = 'https://api.agencyportal.qa.gobusiness.io/api/application/PFT012211374';
-const urlReject = 'https://api.agencyportal.qa.gobusiness.io/api/application/PFT012211374/reject';
+const urlClaim = 'https://api.agencyportal.qa.gobusiness.io/api/application/PFT012211005/claim';
+const urlViewApp = 'https://api.agencyportal.qa.gobusiness.io/api/application/PFT012211005';
+const urlReject = 'https://api.agencyportal.qa.gobusiness.io/api/application/PFT012211005/reject';
 
-const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJBZ2VuY3kgUG9ydGFsIiwic3ViIjoiU3VwZXJ2aXNvckB0ZWNoLmdvdi5zZyIsImV4cCI6MTY3MjgzMzMzNywicm9sZSI6ImFnZW5jeV9zdXBlcnZpc29yIiwidXNlciI6eyJpZCI6MSwiYWdlbmN5Q29kZSI6InRlc3RfdWF0IiwiYWdlbmN5TmFtZSI6IlRlc3QgTGljZW5jZSBVQVQifSwiYXV0aG9yaXRpZXMiOlsicHJvY2Vzc19hcHBsaWNhdGlvbiIsInJlYXNzaWduX2FsbCIsImFkZF91c2VyIiwiZWRpdF91c2VyIiwiZGVsZXRlX3VzZXIiXSwianRpIjoiZTNhNTU5MDEtMzM1Ny00ZmExLWE2M2EtZDRjN2MyYWNlMjI3In0.q2qR0PKmr9MAM_IOABG1VTaQGG7vV66rpwNdIWUIrCIircI-_2vjrprK53BYpZvJ6eh-wEVbF43_6hlV0HEr5g';
+const token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJBZ2VuY3kgUG9ydGFsIiwic3ViIjoiU3VwZXJ2aXNvckB0ZWNoLmdvdi5zZyIsImV4cCI6MTY3MzI1MTYzNywicm9sZSI6ImFnZW5jeV9zdXBlcnZpc29yIiwidXNlciI6eyJpZCI6MSwiYWdlbmN5Q29kZSI6InRlc3RfdWF0IiwiYWdlbmN5TmFtZSI6IlRlc3QgTGljZW5jZSBVQVQifSwiYXV0aG9yaXRpZXMiOlsicHJvY2Vzc19hcHBsaWNhdGlvbiIsInJlYXNzaWduX2FsbCIsImFkZF91c2VyIiwiZWRpdF91c2VyIiwiZGVsZXRlX3VzZXIiXSwianRpIjoiNjA2ZDc1MzYtYzAxMS00OGY2LWE1NzQtZTRkNDgzMzE2OGNmIn0.25fHm2y64lCbMseoRl69OCqwiOoDaNhXBCwBID1TJ2SIR6_K1L-MNRX2_y5jCmypetlHYNYJzAK3PY5cEptmiQ';
 
 
 export default function () {
 
 let data =
 {
-
-
     "internalRemarks": "",
     "messageToApplicant": ""
 }
+/*const appNumber = "FC22200863483";
+
+const urlClaim = 'https://api.agencyportal.qa.gobusiness.io/api/application/'+appNumber+'/claim';
+const urlViewApp = 'https://api.agencyportal.qa.gobusiness.io/api/application/'+appNumber;
+const urlReject = 'https://api.agencyportal.qa.gobusiness.io/api/application/'+appNumber+'/reject'; */
 
 // Unassigned Cases
 let resUnassignedCases = http.get(urlUnassigned,{
     headers: { 'Content-Type': 'application/json', 'Authorization': token},
     });
+
+    console.log(urlClaim);
+    console.log(urlViewApp);
+    console.log(urlReject);
 
 // Claim Application
 let resClaim = http.post(urlClaim, null, {

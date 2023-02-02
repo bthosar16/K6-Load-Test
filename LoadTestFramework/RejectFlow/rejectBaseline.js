@@ -1,4 +1,5 @@
 import http from "k6/http";
+import { group } from "k6";
 
 const dashboardUrl = 'https://api.agencyportal.qa.gobusiness.io/api/dashboard/applications?tab=openCases&page=0&sortField=updatedAt&sortOrder=asc&limit=20';
 const unassignedCasesUrl = 'https://api.agencyportal.qa.gobusiness.io/api/dashboard/applications?tab=unassignedCases&page=0&sortField=updatedAt&sortOrder=asc&limit=20';
@@ -9,31 +10,34 @@ export const options = {
     ext: {
         loadimpact: {
             projectID: 3620807,
-            // Test runs with the same name groups test runs together
-            name: "Validate Application Results - Shared Iteration"
+            name: "Reject the Application - Baseline Test"
         }
     }
 };
 
-export default function SAS(applicationNumber) {
+export default function () {
 
     let rejectData =
     {
         "internalRemarks": "",
         "messageToApplicant": ""
     }
-    const appNumber = [
-        "PFT012303400",
-        "PFT012305820"
-    ]
+   // const appNumber = [
+   //     "PFT123211417"
+   // ]
+
+   group("function_1", function() {var1 = applicationList()});
 
     let appIndex = 0;
     let arrLength = appNumber.length;
     while (appIndex < arrLength) {
-        const startTime = Date.now();
-        const urlClaim = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber[appIndex] + '/claim';
-        const urlViewApp = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber[appIndex];
-        const urlReject = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber[appIndex] + '/reject';
+     //   const urlClaim = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber[appIndex] + '/claim';
+     //   const urlViewApp = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber[appIndex];
+     //   const urlReject = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber[appIndex] + '/reject';
+
+        const urlClaim = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber + '/claim';
+        const urlViewApp = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber;
+        const urlReject = 'https://api.agencyportal.qa.gobusiness.io/api/application/' + appNumber + '/reject';
 
         console.log(urlClaim);
         console.log(urlViewApp);
@@ -63,10 +67,12 @@ export default function SAS(applicationNumber) {
         let resReject = http.post(urlReject, JSON.stringify(rejectData), {
             headers: { 'Content-Type': 'application/json', 'Authorization': token },
         });
-        console.log(startTime - Date.now())
+
         appIndex = appIndex + 1;
         // appNumber.shift();
     }
-   
-}
+};
 
+function applicationList(){
+    return "";
+}

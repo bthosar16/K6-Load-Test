@@ -7,13 +7,13 @@ export const options = {
 	  scenarios: {
 	    contacts: {
 	      executor: 'constant-vus',
-	      vus: 1,
-	      duration: '5m',
+	      vus: 5,
+	      duration: '90s',
 	    },
 	  },
       ext: {
         loadimpact: {
-          projectID: 3620807,
+          projectID: 3624684,
           // Test runs with the same name groups test runs together
           name: "Create Application Results - Constant VU"
         }
@@ -6148,8 +6148,8 @@ export default function () {
       }
   for(let i=0;i<1;i++)
     { //let appNumber=parseInt(Date.now() * Math.random())
-      let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
-        data["application"]["general"]["applicationNumber"]="PFT01221"+ appNumber;
+      let appNumber=Math.floor(Math.random() * (99999 - 10000 + 1 ) + 10000)
+        data["application"]["general"]["applicationNumber"]="PFT62381"+ appNumber;
         //console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 

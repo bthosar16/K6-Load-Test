@@ -7,17 +7,17 @@ export const options = {
   scenarios: {
     contacts: {
       executor: 'ramping-vus',
-      startVUs: 0,
+      startVUs: 2,
       stages: [
-        { duration: '80s', target: 10 },
-        { duration: '40s', target: 0 },
+        { duration: '30s', target: 10 },
+        { duration: '10s', target: 0 },
       ],
       gracefulRampDown: '0s',
     },
   },
       ext: {
         loadimpact: {
-          projectID: 3620807,
+          projectID: 3624684,
           // Test runs with the same name groups test runs together
           name: "Create Application Results - Ramping VU"
         }
@@ -6152,7 +6152,7 @@ export default function () {
       }
   for(let i=0;i<1;i++)
     { let appNumber=Math.floor(Math.random() * (9999 - 1000 + 1 ) + 1000)
-        data["application"]["general"]["applicationNumber"]="PFT12321"+ appNumber;
+        data["application"]["general"]["applicationNumber"]="PFT11461"+ appNumber;
         //console.log("Application Number "+data["application"]["general"]["applicationNumber"])
     
 
